@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoreo de Actividad</title>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="" alt="Logo Henry">
+        </div>
+        <nav>
+            <a href="index.html">
+                Home
+            </a>
+            <a href="generarContraseña.html">
+                Generar Contraseña
+            </a>
+            <a href="cajaFuerte.html">
+                Caja Fuerte
+            </a>
+            <a href="monitoreoActividad.html">
+                Monitoreo de actividad
+            </a>
+            <a href="gestionUsuarios.html">
+                Gestion de usuarios
+            </a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h1>Asistente De Seguridad</h1>
+            <h2>SISTEMA DE MONITOREO DE ACTIVIDAD SOSPECHOSA</h2>
+            <form>
+                <div>
+                    <ul>
+                        <li>
+                            <label for="descripcion">Descripcion</label>
+                            <input type="text" id="descripcion">
+                        </li>
+                        <li>
+                            <label for="nivel">Nivel de riesgo</label>
+                            <input type="number" id="nivel">
+                        </li>
+                        <li>
+                            <button type="submit">AGREGAR ACTIVIDAD</button>
+                        </li>            
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li>
+                            <label for="sospechosa">Eliminar una actividad sospechosa</label>
+                            <input type="text" id="sospechosa">
+                        </li>
+                        <li>
+                            <button type="submit">ELIMINAR ACTIVIDAD</button>
+                        </li>   
+                        <li>
+                            <label for="filtra">Filtra actividades por nivel de riesgo</label>
+                            <input type="text" id="filtra">
+                        </li>
+                        <li>
+                            <button type="submit">MOSTRAR ACTIVIDADES</button>
+                        </li> 
+                        <li>
+                            <label for="reporte">Reporte de actividades</label>
+                            <input type="text" id="reporte">
+                        </li>
+                        <li>
+                            <button type="submit">GENERAR REPORTE</button>
+                        </li>    
+                    </ul>
+                </div>
+            </form>
+            <div>
+                <p>ld: 0 Descripcion: asdf, Riesgo - medio</p>
+                <p>ld: 1 Descripcion: asdf, Riesgo - medio</p>
+                <p>ld: 2 Descripcion: asdf, Riesgo - medio</p>
+                <p>ld: 3 Descripcion: asdf, Riesgo - alto</p>
+            </div>
+            <!--¿la seccion de ingreso de datos se maneja como un formulario?-->
+        </section>
+    </main>
+</body>
+</html>
