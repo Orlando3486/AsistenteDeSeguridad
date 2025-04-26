@@ -4,39 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caja Fuerte</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <div>
-            <img src="" alt="Logo Henry">
+        <div id="cabecera">
+            <img src="./logo henry.jpg" alt="Logo Henry" id="logo">
+            <nav>
+                <!--¿El nav debe organizarse como una lista?-->
+                <a href="index.html">
+                    Home
+                </a>
+                <a href="generarContraseña.html">
+                    Generar Contraseña
+                </a>
+                <a href="cajaFuerte.html">
+                    Caja Fuerte
+                </a>
+                <a href="monitoreoActividad.html">
+                    Monitoreo de actividad
+                </a>
+                <a href="gestionUsuarios.html">
+                    Gestion de usuarios
+                </a>
+            </nav> 
         </div>
-        <nav>
-            <a href="index.html">
-                Home
-            </a>
-            <a href="generarContraseña.html">
-                Generar Contraseña
-            </a>
-            <a href="cajaFuerte.html">
-                Caja Fuerte
-            </a>
-            <a href="monitoreoActividad.html">
-                Monitoreo de actividad
-            </a>
-            <a href="gestionUsuarios.html">
-                Gestion de usuarios
-            </a>
-        </nav>
     </header>
     <main>
         <section>
-            <h1>Asistente De Seguridad</h1>
-            <h2>CAJA FUERTE</h2>
-            <form>
+            <div id="titulo-asistente-amarillo">
+                <h1 id="titulo-asistente">Asistente De Seguridad</h1>
+                <h2 id="titulo-amarillo">CAJA FUERTE</h2>
+            </div>
+            <form class="formulario">
                 <div>
-                    <ul>
+                    <ul class="en-fila">
                         <li>
-                            <label for="secreto">Codigo secreto</label>
+                            <label for="secreto">Código Secreto</label>
                             <input type="password" id="secreto">
                         </li>
                         <li>
@@ -44,22 +48,24 @@
                             <input type="number" id="intentos">
                         </li>
                         <li>
-                            <button type="submit">GUARDAR</button>
+                            <button type="submit" class="botones">GUARDAR</button>
                         </li>            
                     </ul>
                 </div>
                 <div>
                     <ul>
                         <li>
-                            <label for="validar">Validar Codigo Secreto</label>
+                            <label for="validar">Validar Código Secreto</label>
                             <input type="number" id="validar">
                         </li>
-                        <li>
-                            <button type="submit">VALIDAR CODIGO</button>
-                        </li>
-                        <li>
-                            <button type="reset">RESET</button>
-                        </li>            
+                        <div class="en-fila">
+                            <li>
+                                <button type="submit" class="botones">VALIDAR CODIGO</button>
+                            </li>
+                            <li>
+                                <button type="reset" class="botones">RESET</button>
+                            </li>
+                        </div>            
                     </ul>
                 </div>
             </form>
