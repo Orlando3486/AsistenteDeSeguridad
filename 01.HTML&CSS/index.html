@@ -1,61 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../build/assets/img/H-icon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="../build/css/reset.css" />
+    <link rel="stylesheet" href="style.css" />
     <title>Henry Security SAS</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div id="cabecera">
-            <img src="../build/assets/img/HEN-Logo.png" alt="Logo Henry" id="logo">
-            <nav id="navegador">
-                <ul>
-                    <li>
-                        <a href="index.html">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../build/html/generarContrasena.html">
-                            Generar Contraseña
-                        </a>
-                   </li>
-                   <li>
-                        <a href="../build/html/cajaFuerte.html">
-                            Caja Fuerte
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../build/html/monitoreoActividad.html">
-                            Monitoreo de actividad
-                        </a>
-                   </li>
-                   <li>
-                        <a href="../build/html/gestionUsuarios.html">
-                            Gestion de usuarios
-                        </a>
-                   </li>
-                </ul>
-            </nav> 
-        </div>
+      <img src="../build/assets/img/HEN-Logo.png" alt="Logo Henry" />
+      <nav>
+        <ul>
+          <li>
+            <a href="index.html"> Home </a>
+          </li>
+          <li>
+            <a href="../build/html/generarContrasena.html">
+              Generar Contraseña
+            </a>
+          </li>
+          <li>
+            <a href="../build/html/cajaFuerte.html"> Caja Fuerte </a>
+          </li>
+          <li>
+            <a href="../build/html/monitoreoActividad.html">
+              Monitoreo de actividad
+            </a>
+          </li>
+          <li>
+            <a href="../build/html/gestionUsuarios.html">
+              Gestion de usuarios
+            </a>
+          </li>
+        </ul>
+      </nav>
     </header>
     <main>
-        <div id="centrales">
-            <div> 
-                <p id="seguridad">Seguridad perzonalizada y efectiva</p>
-                <h1 id="titulo">Henry<br><span id="amarillo">Security SAS</span></h1>
-                <p id="protegemos">Protegemos tus datos, impulsamos <br> tu confianza.</p>         
-            </div>
-            <div>
-                <img src="./candado henry.png" alt="Foto de sistema de seguridad" id="candado">
-            </div>
+      <section id="centrales">
+        <article>
+          <h3 id="seguridad">Seguridad perzonalizada y efectiva</h3>
+          <h1 class="titulo">Henry</h1>
+          <h2 class="titulo titulo-amarillo">Security SAS</h2>
+          <p id="protegemos">Protegemos tus datos, impulsamos tu confianza.</p>
+        </article>
+        <div>
+          <img
+            src="./candado henry.png"
+            alt="Foto de sistema de seguridad"
+            id="candado" />
         </div>
+      </section>
     </main>
-    <script src="../02. JS Bases/generadorContrasenas.js"></script>
-</body>
+  </body>
 </html>

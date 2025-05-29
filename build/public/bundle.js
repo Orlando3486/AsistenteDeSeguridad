@@ -5,9 +5,67 @@
 /*!***********************************************!*\
   !*** ../02. JS Bases/generadorContrasenas.js ***!
   \***********************************************/
-/***/ (() => {
+/***/ ((module) => {
 
-throw new Error("Module parse failed: Unexpected token (18:6)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n|   var caracteresDisponibles = null;\n| \n>   if () {\n|       \n|   }");
+function checkLongitud(longitud) {
+  /* TU CODIGO */
+  if (longitud === "") return "debe ingresar la longitud";
+
+  if (typeof longitud !== "string") return "La longitud recibida no es válida";
+
+  if (longitud < 3) return "La longitud debe ser mayor o igual a 3";
+
+  if (longitud > 10) return "La longitud debe ser menor o igual a 10";
+
+  return longitud;
+}
+
+function generarContrasena(
+  longitud,
+  incluirEspeciales,
+  incluirNumeros,
+  incluirMayusculas
+) {
+  /* TU CODIGO */
+  var letras = "abcdefghijklmnñopqrstuvwxyz";
+
+  var numeros = "0123456789";
+
+  var especiales = "!¡#$%/&+-_:.,;?¿=*[]{}@";
+
+  var letrasMayusculas = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+
+  var caracteresDisponibles = letras;
+
+  if (incluirEspeciales === true) {
+    caracteresDisponibles += especiales;
+  }
+
+  if (incluirNumeros === true) {
+    caracteresDisponibles += numeros;
+  }
+
+  if (incluirMayusculas === true) {
+    caracteresDisponibles += letrasMayusculas;
+  }
+  var contrasena = "";
+  if (longitud >= 3) {
+    for (let i = 0; i < longitud; i++) {
+      let caracteresAgregados = caracteresDisponibles.charAt(
+        Math.floor(Math.random() * caracteresDisponibles.length)
+      );
+      contrasena += caracteresAgregados;
+    }
+  }
+  return "Contraseña generada: " + contrasena;
+}
+
+// // <------- NO TOCAR -------->
+module.exports = {
+  checkLongitud,
+  generarContrasena,
+};
+
 
 /***/ }),
 
@@ -17,30 +75,83 @@ throw new Error("Module parse failed: Unexpected token (18:6)\nYou may need an a
   \**************************************/
 /***/ ((module) => {
 
-function cajaFuerte(codigoSecreto, cantidadIntentos){
+function cajaFuerte(codigoSecreto, cantidadIntentos) {
   /* TU CODIGO */
-  
+  if (codigoSecreto.length !== 4)
+    return "El codigo debe tener exactamente 4 digitos";
+
+  for (let i = 0; i < codigoSecreto.length; i++)
+    if (isNaN(codigoSecreto[i]))
+      return "El codigo secreto solo puede estar conformado por numeros";
+
+  if (validarNumerosRepetidos(codigoSecreto))
+    return "el codigo no puede tener numeros repetidos";
+
+  if (cantidadIntentos <= 0 || cantidadIntentos >= 6)
+    return "Solo se permite una cantidad de intentos mayor a 0 y menos a 6";
+
+  return codigoSecreto.toString() + cantidadIntentos.toString();
 }
 
-function validarNumerosRepetidos(codigo){
+function validarNumerosRepetidos(codigo) {
   /* TU CODIGO */
-  
+  for (let i = 0; i < codigo.length - 1; i++) {
+    for (let j = i + 1; j < codigo.length; j++) {
+      if (codigo[i] === codigo[j]) {
+        return true;
+      }
+    }
+  }
+  return false;
 }
-
 // <------- Contador de intentos -----> no modificar
-var contadorIntentos = 1
+var contadorIntentos = 1;
 
-function desbloquearCajaFuerte(codigoSecreto, cantidadIntentos, codigoDesbloqueo){
+function desbloquearCajaFuerte(
+  codigoSecreto,
+  cantidadIntentos,
+  codigoDesbloqueo
+) {
   /* TU CODIGO */
-  
-}
+  if (codigoDesbloqueo.length !== 4)
+    return "El codigo debe contener exactamente 4 digitos";
 
+  for (let i = 0; i < codigoDesbloqueo.length; i++)
+    if (isNaN(codigoDesbloqueo[i]))
+      return "El codigo de desbloqueo solo puede estar conformado por numeros";
+
+  if (validarNumerosRepetidos(codigoDesbloqueo))
+    return "el codigo no puede tener numeros repetidos";
+
+  if (codigoDesbloqueo === codigoSecreto) {
+    return `Acceso concedido despues de: ${cantidadIntentos} intentos`;
+  } else {
+    switch (true) {
+      case codigoDesbloqueo % 2 === 0:
+        console.log("el codigo es divisible x 2");
+        break;
+
+      case codigoDesbloqueo > codigoSecreto:
+        console.log("Código incorrecto demasiado alto");
+        break;
+
+      default:
+        console.log("codigo incorrecto");
+        break;
+    }
+  }
+
+  contadorIntentos++;
+  if (contadorIntentos > cantidadIntentos)
+    return "Acceso denegado. Se agotaron los intentos";
+}
 // <------- NO TOCAR -------->
 module.exports = {
   cajaFuerte,
   desbloquearCajaFuerte,
-  validarNumerosRepetidos
-}
+  validarNumerosRepetidos,
+};
+
 
 /***/ }),
 
@@ -51,26 +162,75 @@ module.exports = {
 /***/ ((module) => {
 
 // <------- Arreglo de actividades sospechozas -----> modificar el valor de ser necesario
-var actividadesSospechozas = null
+var actividadesSospechozas = [];
 
-function agregarActividad(descripcion, nivelRiesgo){
-    /* TU CODIGO */
-    
+function agregarActividad(descripcion, nivelRiesgo) {
+  /* TU CODIGO */
+  if (descripcion === "" || nivelRiesgo === "")
+    return "Descripcion o nivel de riesgo no valido";
+
+  if (
+    nivelRiesgo !== "bajo" &&
+    nivelRiesgo !== "medio" &&
+    nivelRiesgo !== "alto"
+  )
+    return "Nivel de riesgo no valido, el nivel debe ser: bajo, medio o alto";
+
+  actividadesSospechozas.push(
+    "Descripcion:" +
+      " " +
+      descripcion +
+      "," +
+      " " +
+      "Riesgo -" +
+      " " +
+      nivelRiesgo
+  );
+  return `Actividad: ${descripcion} con nivel de Riesgo - ${nivelRiesgo} fue agregada con exito`;
 }
 
-function eliminarActividad(indice){
-    /* TU CODIGO */
-    
+function eliminarActividad(indice) {
+  /* TU CODIGO */
+  if (typeof indice !== "number")
+    return "El indice no es valido, debe ser un numero";
+
+  if (indice < 0 || indice >= actividadesSospechozas.length)
+    return "El indice no es valido, se encuentra fuera del rango";
+
+  actividadesSospechozas.splice(indice, 1);
+  return "Actividad eliminada con exito";
 }
 
-function filtrarActividadesPorRiesgo(nivelRiesgo){
-    /* TU CODIGO */
-    
+function filtrarActividadesPorRiesgo(nivelRiesgo) {
+  /* TU CODIGO */
+  if (nivelRiesgo === "") return "Nivel de riesgo no valido";
+
+  if (
+    nivelRiesgo !== "bajo" &&
+    nivelRiesgo !== "medio" &&
+    nivelRiesgo !== "alto"
+  )
+    return "Nivel de riesgo no valido, el nivel debe ser: bajo, medio o alto";
+
+  const actividadesFiltradas = actividadesSospechozas.filter((element) =>
+    element.includes(nivelRiesgo)
+  );
+
+  if (actividadesFiltradas.length === 0)
+    return "No hay actividades con este nivel de riesgo";
+
+  return actividadesFiltradas;
 }
 
-function generarReporteDeActividades(){
-    /* TU CODIGO */
-    
+function generarReporteDeActividades() {
+  /* TU CODIGO */
+  const actividadesReporte = actividadesSospechozas.map((element, index) => {
+    return "Id: " + index + ", " + element;
+  });
+
+  if (actividadesReporte.length === 0) return "No hay actividades para mostrar";
+
+  return actividadesReporte;
 }
 
 // <------- NO TOCAR -------->
@@ -78,12 +238,8 @@ module.exports = {
   agregarActividad,
   eliminarActividad,
   filtrarActividadesPorRiesgo,
-  generarReporteDeActividades
-}
-
-
-
-
+  generarReporteDeActividades,
+};
 
 
 /***/ }),
@@ -95,35 +251,67 @@ module.exports = {
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // <----- NO TOCAR ------->
-const { perfiles } = __webpack_require__(/*! ../build/js/perfiles.js */ "./js/perfiles.js")
+const { perfiles } = __webpack_require__(/*! ../build/js/perfiles.js */ "./js/perfiles.js");
 
 var asistente = {
-    verPerfiles: function(opcion){
-        /* TU CODIGO */
-      
-    },
-    
-    verPerfilesPorAntiguedad: function(){
-        /* TU CODIGO */
-        
-    },
+  verPerfiles: function (opcion) {
+    /* TU CODIGO */
 
-    verAdministradores: function(){
-        /* TU CODIGO */
+    switch (opcion) {
+      case "todo":
+        return perfiles;
 
-    },
+      case "nombre":
+        return perfiles.map((perfil) => perfil.usuario);
 
-    modificarAcceso: function(usuario, codigo){
-        /* TU CODIGO */
-        
+      case "codigo":
+        return perfiles.map((perfil) => perfil.codigo);
+
+      case "nivel":
+        return perfiles.map((perfil) => perfil.nivel_de_autorizacion);
+
+      case "antiguedad":
+        return perfiles.map((perfil) => perfil.antiguedad);
     }
-}
+  },
+
+  verPerfilesPorAntiguedad: function () {
+    /* TU CODIGO */
+
+    return perfiles.toSorted(function (a, b) {
+      return b.antiguedad - a.antiguedad;
+    });
+  },
+
+  verAdministradores: function () {
+    /* TU CODIGO */
+
+    return perfiles.filter((perfil) => {
+      if (perfil.nivel_de_autorizacion === "admin") return perfil;
+    });
+  },
+
+  modificarAcceso: function (usuario, codigo) {
+    /* TU CODIGO */
+
+    const match = perfiles.find(function (perfil) {
+      return perfil.usuario === usuario;
+    });
+
+    if (!match) return "usuario no encontrado";
+
+    if (!Number(codigo) || codigo.length !== 4)
+      return "codigo de acceso invalido, debe contener solo 4 numeros";
+
+    match.codigo = codigo;
+    return "codigo de acceso modificado";
+  },
+};
 
 // <----- NO TOCAR ------->
 module.exports = {
-    asistente
-}
-
+  asistente,
+};
 
 
 /***/ }),
